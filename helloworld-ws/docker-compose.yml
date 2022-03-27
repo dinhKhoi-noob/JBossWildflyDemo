@@ -1,0 +1,18 @@
+version: '3.2'
+
+services:
+  wildfly:
+    environment:
+      - FILE_PATH=/upload/
+      - CRONJOB_DATE_OF_MONTH=Last
+      - CRONJOB_DATE_OF_WEEK=Fri
+      - CRONJOB_HOUR=23
+      - CRONJOB_MINUTE=59
+    image: test
+    ports:
+      - 8080:8080
+      - 9990:9990
+    volumes:
+      - type: bind
+        source: $HOST/home/upload
+        target: /opt/jboss/wildfly/standalone/data/upload
